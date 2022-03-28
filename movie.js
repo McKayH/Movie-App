@@ -1,4 +1,4 @@
-// All
-// Homepage
-// Movie
-// Saved
+// ALL
+// HOMEPAGE
+// MOVIE DETAILS
+// SAVED
