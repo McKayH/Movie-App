@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/head.css">
         <link rel="stylesheet" href="css/search.css">
     </head>
-    <body>
+    <body onload="runAll()">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand"><span><img src="img/theFlyingWorm-croped.png" alt="worm with leaves on its back" id="logo"></span></a>
@@ -17,13 +17,29 @@
             </div>
           </nav>
         <!-- Most Recent Movie -->
-        <div id="recent"></div>
+        <div>
+          <h1>Recent</h1>
+          <div id="recent">
+
+          </div>
+        </div>
         <!-- whats popular -->
-        <div id="popular"></div>
+        <div >
+          <h1>Popular</h1>
+          <div id="popular">
+
+          </div>
+        </div>
         <!-- whats trending -->
-        <div id="trending"></div>
+        <div >
+          <h1>Trend- Wait how is this diffent from Popular Again</h1>
+          <div id="trending">
+
+          </div>
+        </div>
         <!-- Saved -->
         <div id="saved"></div>
     </body>
     <script src="js/fetch.js"></script>
+    <script src="js/movie.js"></script>
 </html>
