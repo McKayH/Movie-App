@@ -74,3 +74,8 @@ function makeSave(save) {
     document.getElementById(saved).innerHTML = SHTML;
 }
 // MOVIE DETAILS
+function select(){
+
+    // info should give me the movie name or id that I can use to get the movie
+    sendInfo(info);
+}
