@@ -1,22 +1,25 @@
 let pg = 1;
 let sortedIds = [];
-const promiseApi = fetchApi(pg);
-promiseApi.then(sendApi);
+const promiseApi = fetchApi();
+promiseApi.then(data => {
+    // makeRecent(data)
+    // makePopular(data)
+    // makeTrend(data)
+    sortIds(data);
+    check(sortedIds);
+});
 
 async function fetchApi(pg){
     const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=dood&page=${pg}`);
     return get.json()
 }
 
-function sendApi(ap){    
-   sortIds(ap);
-}
 function sortIds(ap){
     const page = ap;
+    let ids = [];
     page.results.forEach(ele => {
         ids.push(ele.id);
         });
-    console.log(ids);
     sortIds(ids);
     function sortIds(arr){
         let i = 0;
