@@ -1,23 +1,18 @@
 // ALL
 // HOMEPAGE
-function runAll() {
-    makeRecent()
-    makePopular()
-    makeTrend
-}
 
-function makeRecent() {
+function makeRecent(page) {
     let RHTML = '';
     for (let i =0; i < 20; i++){
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${pages[1].results.i.poster_path}">
+                <img src="${page.results[i].poster_path}">
             </div>
             <div class="info">
-                <p class="rating">${pages[1].results.i.vote_average}</p>
-                <p class="name">${pages[1].results.i.title}</p>
-                <p class="date">${pages[1].results.i.release_date}</p>
+                <p class="rating">${page.results[i].vote_average}</p>
+                <p class="name">${page.results[i].title}</p>
+                <p class="date">${page.results[i].release_date}</p>
             </div>
         </div>
         `;
