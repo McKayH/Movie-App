@@ -1,3 +1,11 @@
+@charset "UTF-8";
+.movieImg {
+  width: 150px;
+}
 
+.scollMovie {
+  overflow: auto;
+  çwhite-space: nowrap;
+}
 
 /*# sourceMappingURL=movie.css.map */

@@ -8,7 +8,7 @@ function makeRecent(page) {
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${page.results[i].poster_path}">
+                <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -26,7 +26,7 @@ function makeRecent(page) {
 }
 function makePopular(page) {
     let PHTML = '';
-    for (let i =0; i < 20; i++){
+    for (let i = 0; i < 20; i++){
         PHTML += `
         <div class="CardStyle">
             <div class="movieImg">
