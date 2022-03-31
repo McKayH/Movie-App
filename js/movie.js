@@ -51,7 +51,7 @@ function makeTrend(page) {
         THTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${page.results[i].poster_path}">
+                <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -72,7 +72,7 @@ function makeSave(save) {
         SHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="https://api.themoviedb.org${pages[1].results.i.poster_path}">
+                <img src="https://image.tmdb.org/t/p/w500/${page.results.i.poster_path}">
             </div>
             <div class="info">
                 <p class="rating">${pages[1].results.i.vote_average}</p>
