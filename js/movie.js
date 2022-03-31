@@ -1,4 +1,5 @@
 // ALL
+let saved = [];
 // HOMEPAGE
 
 function makeRecent(page) {
@@ -15,6 +16,9 @@ function makeRecent(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
         </div>
+        <div>
+            <button onclick="addSave(${page.results[i]})">Save</button>
+        </div>
         `;
     };
     console.log(RHTML)
@@ -26,13 +30,16 @@ function makePopular(page) {
         PHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${page.results[i].poster_path}">
+                <img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}">
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
                 <p class="name">${page.results[i].title}</p>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
+        </div>
+        <div>
+            <button onclick="${page.results[i]}">Save</button>
         </div>
         `;
     };
@@ -52,6 +59,9 @@ function makeTrend(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
         </div>
+        <div>
+            <button onclick="${page.results[i]}">Save</button>
+        </div>
         `;
     };
     document.getElementById(trending).innerHTML = THTML;
@@ -62,7 +72,7 @@ function makeSave(save) {
         SHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${pages[1].results.i.poster_path}">
+                <img src="https://api.themoviedb.org${pages[1].results.i.poster_path}">
             </div>
             <div class="info">
                 <p class="rating">${pages[1].results.i.vote_average}</p>
@@ -77,21 +87,7 @@ function makeSave(save) {
 }
 // MOVIE DETAILS
 
-function findPop () {
-    let pop = [];
-    while (pop.length != 20) {
-        if (vote_average >= 7) {
-            pop.push()
-        }
-    }
-    return pop
-}
-
-function findTrend () {
-    let trend = [];
-    while (trend.length != 20) {
-        if (release_date >= 2020) {
-
-        }
-    }
+function addSave (s) {
+    saved.push(s);
+    return saved
 }
