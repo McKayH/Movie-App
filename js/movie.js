@@ -89,3 +89,4 @@ function makeTrend() {
 //         }
 //     };
 // };
+sendInfo(idOfMovie, PageApi);

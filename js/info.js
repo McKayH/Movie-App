@@ -3,14 +3,11 @@ class overView{
         this.id = id;
 
     }
-    makePage(){
+    makePage(arr){
 
     }
 }
-function sendInfo(info){
+function sendInfo(info, obj){
     const page = new overView(info);
 
-}
-function check(arr){
-    console.log(arr);
 }
