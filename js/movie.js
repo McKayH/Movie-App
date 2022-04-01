@@ -2,19 +2,31 @@
 let saved = [];
 // HOMEPAGE
 
+class savedItem{
+    constructor(id, name, img){
+        this.id = id;
+        this.name = name;
+        this.img = img;
+    }
+}
+
 function makeRecent(page) {
+    console.log(page);
     let RHTML = '';
-    for (let i =0; i < 20; i++){
+    let postPath = '';
+    for (let i =0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+           postPath =`<div class="movieImg">
+            <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+            </div>`
+        }
+        else{
+            postPath = '<h2>NO POSTER</h2>';
+        }
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-            `
-            if (page.results[i].poster_path = null) {
-                RHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-            } else {
-                RHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-            }
-            RHTML += `
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -31,16 +43,21 @@ function makeRecent(page) {
 }
 function makePopular(page) {
     let PHTML = '';
-    for (let i =0; i < 20; i++){
+
+    let postPath = '';
+    for (let i = 0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+            postPath =`<div class="movieImg">
+             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+             </div>`
+         }
+         else{
+             postPath = '<h2>NO POSTER</h2>';
+         }
         PHTML += `
         <div class="CardStyle">
-            <div class="movieImg">`
-        if (page.results[i].poster_path = null) {
-            PHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-        } else {
-            PHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-        }
-        PHTML += `
+            <div class="movieImg">
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -57,17 +74,20 @@ function makePopular(page) {
 }
 function makeTrend(page) {
     let THTML = '';
-    for (let i =0; i < 20; i++){
+    let postPath ='';
+    for (let i =0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+            postPath =`<div class="movieImg">
+             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+             </div>`
+         }
+         else{
+             postPath = '<h2>NO POSTER</h2>';
+         }
         THTML += `
         <div class="CardStyle">
             <div class="movieImg">
-            `
-            if (page.results[i].poster_path = null) {
-                THTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-            } else {
-                THTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
-            }
-            THTML += `
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -83,7 +103,7 @@ function makeTrend(page) {
     document.getElementById('trending').innerHTML = THTML;
 }
 function makeSave(save) {
-    let SHTML = `<div class="ScrollBar">`;
+    let SHTML = '';
     for (let i = 0; i < 20 && i < saved.length; i++){
         SHTML += `
         <div class="CardStyle">
@@ -98,12 +118,28 @@ function makeSave(save) {
         </div>
         `;
     };
-    SHTML += `</div>`
     document.getElementById('saved').innerHTML = SHTML;
 }
 // MOVIE DETAILS
 
+
+
+// function findPop() {
+//     let popular = [];
+//     for (let i = 0; i < total_pages.length; i++) {
+//         for (let j = 0; j < results.length; j++) {
+//             popular.push()
+//             while (con != popular.length-1){
+//                 for (let k = 0; k < popular.length-1; k++)
+//             }
+//         }
+//     };
+// };
+// sendInfo(idOfMovie, PageApi);
+
 function addSave (s) {
     saved.push(s);
+    console.log(saved);
     return saved
 }
+
