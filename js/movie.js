@@ -8,7 +8,13 @@ function makeRecent(page) {
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+            `
+            if (page.results[i].poster_path = null) {
+                RHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+            } else {
+                RHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+            }
+            RHTML += `
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -21,16 +27,20 @@ function makeRecent(page) {
         </div>
         `;
     };
-    console.log(RHTML)
     document.getElementById('recent').innerHTML = RHTML;
 }
 function makePopular(page) {
     let PHTML = '';
-    for (let i = 0; i < 20; i++){
+    for (let i =0; i < 20; i++){
         PHTML += `
         <div class="CardStyle">
-            <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}">
+            <div class="movieImg">`
+        if (page.results[i].poster_path = null) {
+            PHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+        } else {
+            PHTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+        }
+        PHTML += `
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -43,7 +53,7 @@ function makePopular(page) {
         </div>
         `;
     };
-    document.getElementById(popular).innerHTML = PHTML;
+    document.getElementById('popular').innerHTML = PHTML;
 }
 function makeTrend(page) {
     let THTML = '';
@@ -51,7 +61,13 @@ function makeTrend(page) {
         THTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+            `
+            if (page.results[i].poster_path = null) {
+                THTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+            } else {
+                THTML += `<img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}"></img>`
+            }
+            THTML += `
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -64,7 +80,7 @@ function makeTrend(page) {
         </div>
         `;
     };
-    document.getElementById(trending).innerHTML = THTML;
+    document.getElementById('trending').innerHTML = THTML;
 }
 function makeSave(save) {
     let SHTML = `<div class="ScrollBar">`;
@@ -83,7 +99,7 @@ function makeSave(save) {
         `;
     };
     SHTML += `</div>`
-    document.getElementById(saved).innerHTML = SHTML;
+    document.getElementById('saved').innerHTML = SHTML;
 }
 // MOVIE DETAILS
 
