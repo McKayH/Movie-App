@@ -2,4 +2,8 @@
   width: 150px;
 }
 
+.row {
+  display: flex;
+}
+
 /*# sourceMappingURL=movie.css.map */
