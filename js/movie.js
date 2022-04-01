@@ -2,13 +2,31 @@
 let saved = [];
 // HOMEPAGE
 
+class savedItem{
+    constructor(id, name, img){
+        this.id = id;
+        this.name = name;
+        this.img = img;
+    }
+}
+
 function makeRecent(page) {
+    console.log(page);
     let RHTML = '';
-    for (let i =0; i < 20; i++){
+    let postPath = '';
+    for (let i =0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+           postPath =`<div class="movieImg">
+            <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+            </div>`
+        }
+        else{
+            postPath = '<h2>NO POSTER</h2>';
+        }
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="${page.results[i].poster_path}">
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -21,16 +39,24 @@ function makeRecent(page) {
         </div>
         `;
     };
-    console.log(RHTML)
     document.getElementById('recent').innerHTML = RHTML;
 }
 function makePopular(page) {
     let PHTML = '';
-    for (let i =0; i < 20; i++){
+    let postPath = '';
+    for (let i = 0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+            postPath =`<div class="movieImg">
+             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+             </div>`
+         }
+         else{
+             postPath = '<h2>NO POSTER</h2>';
+         }
         PHTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500/${page.results[i].poster_path}">
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -43,15 +69,24 @@ function makePopular(page) {
         </div>
         `;
     };
-    document.getElementById(popular).innerHTML = PHTML;
+    document.getElementById('popular').innerHTML = PHTML;
 }
 function makeTrend(page) {
     let THTML = '';
-    for (let i =0; i < 20; i++){
+    let postPath ='';
+    for (let i =0; i < page.results.length; i++){
+        if(page.results[i].poster_path){
+            postPath =`<div class="movieImg">
+             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+             </div>`
+         }
+         else{
+             postPath = '<h2>NO POSTER</h2>';
+         }
         THTML += `
         <div class="CardStyle">
             <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
+                ${postPath}
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
@@ -64,10 +99,10 @@ function makeTrend(page) {
         </div>
         `;
     };
-    document.getElementById(trending).innerHTML = THTML;
+    document.getElementById('trending').innerHTML = THTML;
 }
 function makeSave(save) {
-    let SHTML = `<div class="ScrollBar">`;
+    let SHTML = '';
     for (let i = 0; i < 20 && i < saved.length; i++){
         SHTML += `
         <div class="CardStyle">
@@ -82,8 +117,7 @@ function makeSave(save) {
         </div>
         `;
     };
-    SHTML += `</div>`
-    document.getElementById(saved).innerHTML = SHTML;
+    document.getElementById('saved').innerHTML = SHTML;
 }
 // MOVIE DETAILS
 
@@ -104,6 +138,7 @@ function makeSave(save) {
 
 function addSave (s) {
     saved.push(s);
+    console.log(saved);
     return saved
 }
 
