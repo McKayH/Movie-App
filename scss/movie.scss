@@ -2,8 +2,18 @@
     width: 150px;
 }
 
-// .scollMovie {
-//     overflow: auto;
-//     white-space: nowrap;
-// }
+.scollMovie {
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+.flex {
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    overflow: scroll;
+
+}
 

@@ -39,6 +39,15 @@ function makeRecent(page) {
         </div>
         `;
     };
+    // if (pg == 1) {
+    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    // } else if (pg > 1 && pg < 8) {
+    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    // } else {
+    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+    // }
+    
     document.getElementById('recent').innerHTML = RHTML;
 }
 function makePopular(page) {
