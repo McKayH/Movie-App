@@ -3,10 +3,11 @@ let saved = [];
 // HOMEPAGE
 
 class savedItem{
-    constructor(id, name, img){
+    constructor(id, title, img, rateing){
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.img = img;
+        this.rateing = rateing
     }
 }
 
@@ -35,7 +36,7 @@ function makeRecent(page) {
             </div>
         </div>
         <div>
-            <button onclick="addSave(${page.results[i]})">Save</button>
+            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
         </div>
         `;
     };
@@ -65,7 +66,7 @@ function makePopular(page) {
             </div>
         </div>
         <div>
-            <button onclick="${page.results[i]}">Save</button>
+            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
         </div>
         `;
     };
@@ -95,7 +96,7 @@ function makeTrend(page) {
             </div>
         </div>
         <div>
-            <button onclick="${page.results[i]}">Save</button>
+            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
         </div>
         `;
     };
@@ -103,42 +104,43 @@ function makeTrend(page) {
 }
 function makeSave(save) {
     let SHTML = '';
-    for (let i = 0; i < 20 && i < saved.length; i++){
-        SHTML += `
-        <div class="CardStyle">
-            <div class="movieImg">
-                <img src="https://image.tmdb.org/t/p/w500/${page.results.i.poster_path}">
-            </div>
-            <div class="info">
-                <p class="rating">${pages[1].results.i.vote_average}</p>
-                <p class="name">${pages[1].results.i.title}</p>
-                <p class="date">${pages[1].results.i.release_date}</p>
-            </div>
+    let img = '';
+    save.forEach(ele => {
+        if(ele.img){
+            img = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
+        }
+        else{
+            img = `<h2>NO POSTER</h2>`
+        }
+        SHTML += `<div class="CardStyle">
+        <div class="movieImg">
+            ${img}
         </div>
-        `;
-    };
+        <div class="info">
+            <p class="rating">${ele.rateing}</p>
+            <p class="name">${ele.title}</p>
+        </div>
+    </div>
+    <div>`
+    });
     document.getElementById('saved').innerHTML = SHTML;
 }
-// MOVIE DETAILS
 
-
-
-// function findPop() {
-//     let popular = [];
-//     for (let i = 0; i < total_pages.length; i++) {
-//         for (let j = 0; j < results.length; j++) {
-//             popular.push()
-//             while (con != popular.length-1){
-//                 for (let k = 0; k < popular.length-1; k++)
-//             }
-//         }
-//     };
-// };
-// sendInfo(idOfMovie, PageApi);
-
-function addSave (s) {
-    saved.push(s);
-    console.log(saved);
-    return saved
+function addSave (svid, svtitle, svposter, svrating) {
+    let haveSved = false;
+    if(saved.length){
+        saved.forEach(ele =>{
+            if(svid === ele.id){
+                console.log('ALREADY SAVED THIS');
+                haveSved = true;
+            }
+        });
+    }
+    if(!haveSved){
+        const Item = new savedItem(svid, svtitle, svposter,svrating)
+        saved.push(Item);
+        console.log(saved);
+        makeSave(saved);
+    }
 }
 
