@@ -2,9 +2,9 @@ let pg = 1;
 let sortedIds = [];
 const promiseApi = fetchApi();
 promiseApi.then(data => {
-    // makeRecent(data)
-    // makePopular(data)
-    // makeTrend(data)
+    makeRecent(data)
+    makePopular(data)
+    makeTrend(data)
     // sortIds(data);
 });
 
