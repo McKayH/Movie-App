@@ -44,6 +44,7 @@ function makeRecent(page) {
 }
 function makePopular(page) {
     let PHTML = '';
+
     let postPath = '';
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
