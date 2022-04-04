@@ -47,12 +47,12 @@ function makeRecent(page) {
     };
     let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
-        pHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
     }
     
     document.getElementById('recent').innerHTML = RHTML;
@@ -86,6 +86,16 @@ function makePopular(page) {
         </div>
         `;
     };
+
+    let pHTML =``;
+    if (pg == 1) {
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+    } else if (pg > 1 && pg < 8) {
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+    } else {
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+    }
     document.getElementById('popular').innerHTML = PHTML;
 }
 function makeTrend(page) {
@@ -116,6 +126,15 @@ function makeTrend(page) {
         </div>
         `;
     };
+    let pHTML = '';
+    if (pg == 1) {
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+    } else if (pg > 1 && pg < 8) {
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+    } else {
+        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+    }
     document.getElementById('trending').innerHTML = THTML;
 }
 function makeSave(save) {
