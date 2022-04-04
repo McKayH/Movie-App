@@ -184,7 +184,7 @@ function findPop() {
     let popular = [];
     for (let i = 0; i < 8; i++) {
         for (let i = 0; i < page.results.length; i++) {
-            if(page.results[i].vote_average >= 7) {
+            if(page.results[i].vote_average.value >= 7) {
                 popular.push(page.results[i])
             };
         }
@@ -196,11 +196,12 @@ function findTrend() {
     let trend = [];
     for (let i = 0; i < 8; i++) {
         for (let i = 0; i < page.results.length; i++) {
-            if(page.results[i].release_date >= 2020) {
+            let year = [];
+            year = page.results[i].release_date.split('-')
+            if(year[0].value >= 2020) {
                 trend.push(page.results[i])
             };
         }
     };
     return trend;
 }
-
