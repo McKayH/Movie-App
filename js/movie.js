@@ -192,16 +192,16 @@ function findPop() {
     return popular;
 }
 
-function findTrend() {
-    let trend = [];
-    for (let i = 0; i < 8; i++) {
-        for (let i = 0; i < page.results.length; i++) {
-            let year = [];
-            year = page.results[i].release_date.split('-')
-            if(year[0].value >= 2020) {
-                trend.push(page.results[i])
-            };
-        }
-    };
-    return trend;
-}
+// function findTrend() {
+//     let trend = [];
+//     for (let i = 0; i < 8; i++) {
+//         for (let i = 0; i < page.results.length; i++) {
+//             let year = [];
+//             year = page.results[i].release_date.split('-')
+//             if(year[0].value >= 2020) {
+//                 trend.push(page.results[i])
+//             };
+//         }
+//     };
+//     return trend;
+// }

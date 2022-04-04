@@ -16,7 +16,7 @@ async function fetchApi(pg){
 function plus(pg,fun) {
     pg += 1;
 
-    const promiseApi = fetchApi();
+    const plusApi = fetchApi();
 
     promiseApi.then(data => {
         fun(data)
@@ -28,10 +28,10 @@ function plus(pg,fun) {
     }
 }
 
-function plus(pg) {
+function minus(pg) {
     pg -= 1;
 
-    const promiseApi = fetchApi();
+    const minusApi = fetchApi();
 
     promiseApi.then(data => {
         fun(data)
