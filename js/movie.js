@@ -34,20 +34,21 @@ function makeRecent(page) {
                 <p class="name">${page.results[i].title}</p>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
-        </div>
-        <div>
-            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            <div>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            </div>
         </div>
         `;
     };
-    // if (pg == 1) {
-    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
-    // } else if (pg > 1 && pg < 8) {
-    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
-    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
-    // } else {
-    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
-    // }
+    let pHTML =``;
+    if (pg == 1) {
+        pHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    } else if (pg > 1 && pg < 8) {
+        pHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+        pHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    } else {
+        pHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+    }
     
     document.getElementById('recent').innerHTML = RHTML;
 }
@@ -74,9 +75,9 @@ function makePopular(page) {
                 <p class="name">${page.results[i].title}</p>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
-        </div>
-        <div>
-            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            <div>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            </div>
         </div>
         `;
     };
@@ -104,9 +105,9 @@ function makeTrend(page) {
                 <p class="name">${page.results[i].title}</p>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
-        </div>
-        <div>
-            <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            <div>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+            </div>
         </div>
         `;
     };
