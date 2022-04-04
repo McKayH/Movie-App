@@ -22,7 +22,7 @@ function makeRecent(page) {
             </div>`
         }
         else{
-            postPath = '<h2>NO POSTER</h2>';
+            postPath = '<img src="img/noPost.png" alt="no poster img">';
         }
         RHTML += `
         <div class="CardStyle">
@@ -40,6 +40,15 @@ function makeRecent(page) {
         </div>
         `;
     };
+    // if (pg == 1) {
+    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    // } else if (pg > 1 && pg < 8) {
+    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+    //     RHTML += `<button onclick="pg += 1">NEXT PAGE</button>`
+    // } else {
+    //     RHTML += `<button onclick="pg -= 1">PREV PAGE</button>`
+    // }
+    
     document.getElementById('recent').innerHTML = RHTML;
 }
 function makePopular(page) {
@@ -53,7 +62,7 @@ function makePopular(page) {
              </div>`
          }
          else{
-             postPath = '<h2>NO POSTER</h2>';
+            postPath = '<img src="img/noPost.png" alt="no poster img">';
          }
         PHTML += `
         <div class="CardStyle">
@@ -83,7 +92,7 @@ function makeTrend(page) {
              </div>`
          }
          else{
-             postPath = '<h2>NO POSTER</h2>';
+             postPath = '<img src="img/noPost.png" alt="no poster img">';
          }
         THTML += `
         <div class="CardStyle">
@@ -105,17 +114,18 @@ function makeTrend(page) {
 }
 function makeSave(save) {
     let SHTML = '';
-    let img = '';
+    let postIm = '';
     save.forEach(ele => {
-        if(ele.img){
-            img = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
+        if(ele.img != 'null'){
+            postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
         }
         else{
-            img = `<h2>NO POSTER</h2>`
+            console.log('here');
+            postIm = `<img src="img/noPost.png" alt="no poster img">`;
         }
         SHTML += `<div class="CardStyle">
         <div class="movieImg">
-            ${img}
+            ${postIm}
         </div>
         <div class="info">
             <p class="rating">${ele.rateing}</p>
@@ -138,7 +148,7 @@ function addSave (svid, svtitle, svposter, svrating) {
         });
     }
     if(!haveSved){
-        const Item = new savedItem(svid, svtitle, svposter,svrating)
+        const Item = new savedItem(svid, svtitle, svposter, svrating)
         saved.push(Item);
         console.log(saved);
         makeSave(saved);

@@ -2,8 +2,18 @@
   width: 150px;
 }
 
-.row {
+.scollMovie {
+  overflow: auto;
+  white-space: nowrap;
   display: flex;
+  flex-direction: row;
+}
+
+.flex {
+  display: flex;
+  height: 400px;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 /*# sourceMappingURL=movie.css.map */
