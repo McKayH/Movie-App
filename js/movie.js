@@ -1,5 +1,10 @@
 // ALL
-let saved = [];
+
+let saved = JSON.parse(localStorage.getItem('movieList')) || [];
+if (saved.length) {
+    console.log(saved);
+    makeSave(saved);
+}
 // HOMEPAGE
 
 class savedItem{
@@ -121,7 +126,6 @@ function makeSave(save) {
             postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
         }
         else{
-            console.log('here');
             postIm = `<img src="img/noPost.png" alt="no poster img">`;
         }
         SHTML += `<div class="CardStyle">
@@ -151,7 +155,7 @@ function addSave (svid, svtitle, svposter, svrating) {
     if(!haveSved){
         const Item = new savedItem(svid, svtitle, svposter, svrating)
         saved.push(Item);
-        console.log(saved);
+        localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
     }
 }
