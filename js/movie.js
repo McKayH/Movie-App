@@ -155,8 +155,7 @@ function makeSave(save) {
             <p class="rating">${ele.rateing}</p>
             <p class="name">${ele.title}</p>
         </div>
-    </div>
-    <div>`
+    </div>`
     });
     document.getElementById('saved').innerHTML = SHTML;
 }
@@ -177,5 +176,10 @@ function addSave (svid, svtitle, svposter, svrating) {
         localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
     }
+}
+
+function searching(){
+    const searched = document.getElementById('search').value;
+    console.log(searched);
 }
 
