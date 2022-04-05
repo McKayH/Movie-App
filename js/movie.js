@@ -1,4 +1,11 @@
 // ALL
+let pg = 1;
+
+let pgObject = {
+    rpg: 1,
+    ppg: 1,
+    tpg: 1,
+}
 
 let saved = JSON.parse(localStorage.getItem('movieList')) || [];
 if (saved.length) {
@@ -20,7 +27,10 @@ function makeRecent(page) {
     console.log(page);
     let RHTML = '';
     let postPath = '';
-    for (let i =0; i < page.results.length; i++){
+    if (pgObject["rpg"] > 1) {
+        RHTML += `<button onclick="minus('rpg', makeRecent)">PREV PAGE</button>`
+    }
+    for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
             postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
@@ -43,23 +53,20 @@ function makeRecent(page) {
         </div>
         `;
     };
-    let pHTML =``;
-    if (pg == 1) {
-        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
-    } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
-        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
-    } else {
-        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
+    if (pgObject["rpg"] < page.total_pages) {
+        RHTML += `<button onclick="plus('rpg', makeRecent)">NEXT PAGE</button>`
     }
     
     document.getElementById('recent').innerHTML = RHTML;
-    document.getElementById('NP1').innerHTML = pHTML;
 }
+// popular
 function makePopular(page) {
     let PHTML = '';
 
     let postPath = '';
+    if (pgObject["ppg"] > 1) {
+        PHTML += `<button onclick="minus('ppg', makePopular)">PREV PAGE</button>`
+    }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
             postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
@@ -83,23 +90,18 @@ function makePopular(page) {
         </div>
         `;
     };
-
-    let pHTML =``;
-    if (pg == 1) {
-        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
-    } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
-        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
-    } else {
-        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
+    if (pgObject["ppg"] < page.total_pages) {
+        PHTML += `<button onclick="plus('ppg', makePopular)">NEXT PAGE</button>`
     }
-
     document.getElementById('popular').innerHTML = PHTML;
-    document.getElementById('NP2').innerHTML = pHTML;
 }
+// Trending
 function makeTrend(page) {
     let THTML = '';
     let postPath ='';
+    if (pgObject["tpg"] > 1) {
+        THTML += `<button onclick="minus('tpg', makeTrend)">PREV PAGE</button>`
+    }
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
             postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
@@ -123,18 +125,11 @@ function makeTrend(page) {
         </div>
         `;
     };
-    let pHTML =``;
-    if (pg == 1) {
-        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
-    } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
-        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
-    } else {
-        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
+   if (pgObject["tpg"] < page.total_pages) {
+        THTML += `<button onclick="plus('tpg', makeTrend)">NEXT PAGE</button>`
     }
 
     document.getElementById('trending').innerHTML = THTML;
-    document.getElementById('NP3').innerHTML = pHTML;
 }
 function makeSave(save) {
     let SHTML = '';
@@ -175,60 +170,4 @@ function addSave (svid, svtitle, svposter, svrating) {
         localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
     }
-}
-
-function searching(){
-    const searched = document.getElementById('search').value.toUpperCase();
-    const ap = fetchApi();
-    ap.then(data =>{
-        search(data, searched)
-    });
-}
-function search(data, searched){
-    console.log(searched);
-    let result = [];
-    let titles = [];
-    let swap = '';
-    data.results.forEach(ele =>{
-        titles.push(ele.title);
-    });
-    result = titles.filter(ele =>{
-        return ele.toUpperCase().includes(searched);
-    });
-    console.log(result);
-    
-    data.results.forEach(itm =>{
-        for (let i = 0; i < result.length; i++) {
-            const til = result[i];
-            if (itm.title === til) {
-                if(itm.poster_path){
-                    postPath =`<div class="movieImg">
-                     <img src="https://image.tmdb.org/t/p/w500${itm.poster_path}">
-                     </div>`
-                 }
-                 else{
-                    postPath = '<img src="img/noPost.png" alt="no poster img">';
-                 }
-                swap += `
-                <div class="CardStyle">
-                    <div class="movieImg">
-                        ${postPath}
-                    </div>
-                    <div class="info">
-                        <p class="rating">${itm.vote_average}</p>
-                        <p class="name">${itm.title}</p>
-                        <p class="date">${itm.release_date}</p>
-                    </div>
-                    <div>
-                        <button onclick="addSave('${itm.id}', '${itm.title}', '${itm.poster_path}', '${itm.vote_average}')">Save</button>
-                    </div>
-                </div>
-                `;
-            }
-            
-        }
-    });
-    document.getElementById('replace').innerHTML = 'Searched Items';
-    document.getElementById('popular').innerHTML  = swap;
-
 }
