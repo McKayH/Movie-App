@@ -14,6 +14,7 @@ async function fetchApi(pg){
 }
 
 // https://developers.themoviedb.org/3/trending/get-trending
+// https://developers.themoviedb.org/3/movies/get-popular-movies
 
 function plus(pg,fun) {
     pgObject[pg] += 1;
