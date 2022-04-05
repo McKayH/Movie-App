@@ -189,13 +189,48 @@ function search(data, searched){
     console.log(searched);
     let result = [];
     let titles = [];
+    let swap = '';
     data.results.forEach(ele =>{
         titles.push(ele.title);
     });
     result = titles.filter(ele =>{
-        console.log(ele)
         return ele.toUpperCase().includes(searched);
     });
     console.log(result);
+    
+    data.results.forEach(itm =>{
+        for (let i = 0; i < result.length; i++) {
+            const til = result[i];
+            if (itm.title === til) {
+                if(itm.poster_path){
+                    postPath =`<div class="movieImg">
+                     <img src="https://image.tmdb.org/t/p/w500${itm.poster_path}">
+                     </div>`
+                 }
+                 else{
+                    postPath = '<img src="img/noPost.png" alt="no poster img">';
+                 }
+                swap += `
+                <div class="CardStyle">
+                    <div class="movieImg">
+                        ${postPath}
+                    </div>
+                    <div class="info">
+                        <p class="rating">${itm.vote_average}</p>
+                        <p class="name">${itm.title}</p>
+                        <p class="date">${itm.release_date}</p>
+                    </div>
+                    <div>
+                        <button onclick="addSave('${itm.id}', '${itm.title}', '${itm.poster_path}', '${itm.vote_average}')">Save</button>
+                    </div>
+                </div>
+                `;
+            }
+            
+        }
+    });
+    document.getElementById('replace').innerHTML = 'Searched Items';
+    document.getElementById('popular').innerHTML  = swap;
+
 }
 
