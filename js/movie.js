@@ -22,13 +22,11 @@ function makeRecent(page) {
     let postPath = '';
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-           postPath =`<div class="movieImg">
-            <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-            </div>`
-        }
-        else{
-            postPath = '<img src="img/noPost.png" alt="no poster img">';
-        }
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
+         }
+         else{
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
+         }
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
@@ -36,7 +34,7 @@ function makeRecent(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -47,15 +45,16 @@ function makeRecent(page) {
     };
     let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
     }
     
     document.getElementById('recent').innerHTML = RHTML;
+    document.getElementById('NP1').innerHTML = pHTML;
 }
 function makePopular(page) {
     let PHTML = '';
@@ -63,12 +62,10 @@ function makePopular(page) {
     let postPath = '';
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<div class="movieImg">
-             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-             </div>`
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
-            postPath = '<img src="img/noPost.png" alt="no poster img">';
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
          }
         PHTML += `
         <div class="CardStyle">
@@ -77,7 +74,7 @@ function makePopular(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -89,26 +86,26 @@ function makePopular(page) {
 
     let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
     }
+
     document.getElementById('popular').innerHTML = PHTML;
+    document.getElementById('NP2').innerHTML = pHTML;
 }
 function makeTrend(page) {
     let THTML = '';
     let postPath ='';
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<div class="movieImg">
-             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-             </div>`
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
-             postPath = '<img src="img/noPost.png" alt="no poster img">';
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
          }
         THTML += `
         <div class="CardStyle">
@@ -117,7 +114,7 @@ function makeTrend(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -126,23 +123,25 @@ function makeTrend(page) {
         </div>
         `;
     };
-    let pHTML = '';
+    let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
     }
+
     document.getElementById('trending').innerHTML = THTML;
+    document.getElementById('NP3').innerHTML = pHTML;
 }
 function makeSave(save) {
     let SHTML = '';
     let postIm = '';
     save.forEach(ele => {
         if(ele.img != 'null'){
-            postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
+            postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}" onclick="switchPage(${ele.id})">`;
         }
         else{
             postIm = `<img src="img/noPost.png" alt="no poster img">`;
@@ -153,7 +152,7 @@ function makeSave(save) {
         </div>
         <div class="info">
             <p class="rating">${ele.rateing}</p>
-            <p class="name">${ele.title}</p>
+            <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
         </div>
     </div>`
     });
@@ -233,4 +232,3 @@ function search(data, searched){
     document.getElementById('popular').innerHTML  = swap;
 
 }
-
