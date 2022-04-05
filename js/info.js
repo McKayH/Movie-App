@@ -1,13 +1,4 @@
-class overView{
-    constructor(id){
-        this.id = id;
-
-    }
-    makePage(arr){
-
-    }
-}
-function sendInfo(info, obj){
-    const page = new overView(info);
-
+function switchPage(id){
+    document.getElementById('page').innerHTML = `<button onClick="window.location.reload();">Go Back</button>`;
+    console.log(id);
 }

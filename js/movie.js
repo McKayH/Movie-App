@@ -32,13 +32,11 @@ function makeRecent(page) {
     }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-           postPath =`<div class="movieImg">
-            <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-            </div>`
-        }
-        else{
-            postPath = '<img src="img/noPost.png" alt="no poster img">';
-        }
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
+         }
+         else{
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
+         }
         RHTML += `
         <div class="CardStyle">
             <div class="movieImg">
@@ -46,7 +44,7 @@ function makeRecent(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -71,12 +69,10 @@ function makePopular(page) {
     }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<div class="movieImg">
-             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-             </div>`
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
-            postPath = '<img src="img/noPost.png" alt="no poster img">';
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
          }
         PHTML += `
         <div class="CardStyle">
@@ -85,7 +81,7 @@ function makePopular(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -108,12 +104,10 @@ function makeTrend(page) {
     }
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<div class="movieImg">
-             <img src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">
-             </div>`
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
-             postPath = '<img src="img/noPost.png" alt="no poster img">';
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
          }
         THTML += `
         <div class="CardStyle">
@@ -122,7 +116,7 @@ function makeTrend(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <p class="name">${page.results[i].title}</p>
+                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -142,7 +136,7 @@ function makeSave(save) {
     let postIm = '';
     save.forEach(ele => {
         if(ele.img != 'null'){
-            postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}">`;
+            postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}" onclick="switchPage(${ele.id})">`;
         }
         else{
             postIm = `<img src="img/noPost.png" alt="no poster img">`;
@@ -153,7 +147,7 @@ function makeSave(save) {
         </div>
         <div class="info">
             <p class="rating">${ele.rateing}</p>
-            <p class="name">${ele.title}</p>
+            <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
         </div>
     </div>`
     });
@@ -176,25 +170,4 @@ function addSave (svid, svtitle, svposter, svrating) {
         localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
     }
-}
-
-function searching(){
-    const searched = document.getElementById('search').value.toUpperCase();
-    const ap = fetchApi();
-    ap.then(data =>{
-        search(data, searched)
-    });
-}
-function search(data, searched){
-    console.log(searched);
-    let result = [];
-    let titles = [];
-    data.results.forEach(ele =>{
-        titles.push(ele.title);
-    });
-    result = titles.filter(ele =>{
-        console.log(ele)
-        return ele.toUpperCase().includes(searched);
-    });
-    console.log(result);
 }
