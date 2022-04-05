@@ -1,4 +1,4 @@
-let pg = 1;
+
 // let sortedIds = [];
 const promiseApi = fetchApi();
 promiseApi.then(data => {
@@ -9,39 +9,32 @@ promiseApi.then(data => {
 });
 
 async function fetchApi(pg){
-    const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=dood&page=${pg}`);
+    const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=dead&page=${pg}`);
     return get.json()
 }
 
+// https://developers.themoviedb.org/3/trending/get-trending
+
 function plus(pg,fun) {
-    pg += 1;
+    pgObject[pg] += 1;
 
-    const plusApi = fetchApi();
+    const plusApi = fetchApi(pgObject[pg]);
 
-    promiseApi.then(data => {
+    plusApi.then(data => {
         fun(data)
     });
-
-    function fetchApi(pg){
-        const get = fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=dood&page=${pg}`);
-        return get.json()
-    }
 }
 
-function minus(pg) {
-    pg -= 1;
+function minus(pg, fun) {
+    pgObject[pg] -= 1;
 
-    const minusApi = fetchApi();
+    const minusApi = fetchApi(pgObject[pg]);
 
-    promiseApi.then(data => {
+    minusApi.then(data => {
         fun(data)
     });
-
-    function fetchApi(pg){
-        const get = fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=dood&page=${pg}`);
-        return get.json()
-    }
 }
+
 //  work on this later
 
 
