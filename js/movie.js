@@ -28,7 +28,7 @@ function makeRecent(page) {
     let RHTML = '';
     let postPath = '';
     if (pgObject["rpg"] > 1) {
-        RHTML += `<button onclick="minus('rpg', makeRecent)">PREV PAGE</button>`
+        RHTML += `<button class="buttonStyle" onclick="minus('rpg', makeRecent)">PREV PAGE</button>`
     }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
@@ -50,13 +50,13 @@ function makeRecent(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+                <button class="buttonStyle" onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
     };
     if (pgObject["rpg"] < page.total_pages) {
-        RHTML += `<button onclick="plus('rpg', makeRecent)">NEXT PAGE</button>`
+        RHTML += `<button class="buttonStyle" onclick="plus('rpg', makeRecent)">NEXT PAGE</button>`
     }
     
     document.getElementById('recent').innerHTML = RHTML;
@@ -67,7 +67,7 @@ function makePopular(page) {
 
     let postPath = '';
     if (pgObject["ppg"] > 1) {
-        PHTML += `<button onclick="minus('ppg', makePopular)">PREV PAGE</button>`
+        PHTML += `<button class="buttonStyle" onclick="minus('ppg', makePopular)">PREV PAGE</button>`
     }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
@@ -95,16 +95,16 @@ function makePopular(page) {
         `;
     };
     if (pgObject["ppg"] < page.total_pages) {
-        PHTML += `<button onclick="plus('ppg', makePopular)">NEXT PAGE</button>`
+        PHTML += `<button class="buttonStyle" onclick="plus('ppg', makePopular)">NEXT PAGE</button>`
     }
-    document.getElementById('pop').innerHTML = THTML;
+    document.getElementById('popular').innerHTML = PHTML;
 }
 // Trending
 function makeTrend(page) {
     let THTML = '';
     let postPath ='';
     if (pgObject["tpg"] > 1) {
-        THTML += `<button onclick="minus('tpg', makeTrend)">PREV PAGE</button>`
+        THTML += `<button class="buttonStyle" onclick="minus('tpg', makeTrend)">PREV PAGE</button>`
     }
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
@@ -132,7 +132,7 @@ function makeTrend(page) {
         `;
     };
    if (pgObject["tpg"] < page.total_pages) {
-        THTML += `<button onclick="plus('tpg', makeTrend)">NEXT PAGE</button>`
+        THTML += `<button class="buttonStyle" onclick="plus('tpg', makeTrend)">NEXT PAGE</button>`
     }
 
     document.getElementById('trending').innerHTML = THTML;
