@@ -47,15 +47,16 @@ function makeRecent(page) {
     };
     let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeRecent)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeRecent)">PREV PAGE</button>`
     }
     
     document.getElementById('recent').innerHTML = RHTML;
+    document.getElementById('NP1').innerHTML = pHTML;
 }
 function makePopular(page) {
     let PHTML = '';
@@ -89,14 +90,16 @@ function makePopular(page) {
 
     let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makePopular)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makePopular)">PREV PAGE</button>`
     }
+
     document.getElementById('popular').innerHTML = PHTML;
+    document.getElementById('NP2').innerHTML = pHTML;
 }
 function makeTrend(page) {
     let THTML = '';
@@ -126,16 +129,18 @@ function makeTrend(page) {
         </div>
         `;
     };
-    let pHTML = '';
+    let pHTML =``;
     if (pg == 1) {
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
     } else if (pg > 1 && pg < 8) {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
-        pHTML += `<button onclick="plus()">NEXT PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
+        pHTML += `<button onclick="plus(pg, makeTrend)">NEXT PAGE</button>`
     } else {
-        pHTML += `<button onclick="minus()">PREV PAGE</button>`
+        pHTML += `<button onclick="minus(pg, makeTrend)">PREV PAGE</button>`
     }
+
     document.getElementById('trending').innerHTML = THTML;
+    document.getElementById('NP3').innerHTML = pHTML;
 }
 function makeSave(save) {
     let SHTML = '';
@@ -198,4 +203,3 @@ function search(data, searched){
     });
     console.log(result);
 }
-
