@@ -179,7 +179,23 @@ function addSave (svid, svtitle, svposter, svrating) {
 }
 
 function searching(){
-    const searched = document.getElementById('search').value;
+    const searched = document.getElementById('search').value.toUpperCase();
+    const ap = fetchApi();
+    ap.then(data =>{
+        search(data, searched)
+    });
+}
+function search(data, searched){
     console.log(searched);
+    let result = [];
+    let titles = [];
+    data.results.forEach(ele =>{
+        titles.push(ele.title);
+    });
+    result = titles.filter(ele =>{
+        console.log(ele)
+        return ele.toUpperCase().includes(searched);
+    });
+    console.log(result);
 }
 

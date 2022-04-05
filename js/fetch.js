@@ -1,5 +1,5 @@
 let pg = 1;
-let sortedIds = [];
+// let sortedIds = [];
 const promiseApi = fetchApi();
 promiseApi.then(data => {
     makeRecent(data)
