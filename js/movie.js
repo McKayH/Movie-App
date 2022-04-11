@@ -2,9 +2,8 @@
 let pg = 1;
 
 let pgObject = {
-    rpg: 1,
+    spg: 1,
     ppg: 1,
-    tpg: 1,
 }
 
 let saved = JSON.parse(localStorage.getItem('movieList')) || [];
@@ -127,4 +126,38 @@ function addSave (svid, svtitle, svposter, svrating) {
         localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
     }
+}
+
+function srch(data, qry){
+    let swap = '';
+    if (pgObject["spg"] > 1) {
+        swap += `<button class="buttonStyle" onclick="minSearch('spg', srch, '${qry}')">PREV PAGE</button>`
+    }
+        data.results.forEach(ele => {
+            if(ele.backdrop_path){
+                postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.poster_path}" onclick="switchPage(${ele.id})">`;
+            }
+            else{
+                postIm = `<img onclick="switchPage(${ele.id})" src="img/noPost.png" alt="no poster img">`;
+            }
+            swap += `<div class="CardStyle">
+            <div class="movieImg">
+                ${postIm}
+            </div>
+            <div class="info">
+                <p class="rating">${ele.popularity}</p>
+                <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
+                <span>${ele.release_date}</span>
+                <div>
+                <button onclick="addSave('${ele.id}', '${ele.title}', '${ele.poster_path}', '${ele.vote_average}')">Save</button>
+                </div>
+            </div>
+        </div>`
+    });
+    if (pgObject["spg"] < data.total_pages) {
+        swap += `<button class="buttonStyle" onclick="plusSearch('spg', srch, '${qry}')">NEXT PAGE</button>`;
+    }
+    document.getElementById('replace').innerHTML = 'Searched Items';
+    document.getElementById('popular').innerHTML  = swap;
+
 }
