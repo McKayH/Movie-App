@@ -139,7 +139,7 @@ function makeSave(save) {
             postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}" onclick="switchPage(${ele.id})">`;
         }
         else{
-            postIm = `<img src="img/noPost.png" alt="no poster img">`;
+            postIm = `<img onclick="switchPage(${ele.id})" src="img/noPost.png" alt="no poster img">`;
         }
         SHTML += `<div class="CardStyle">
         <div class="movieImg">
