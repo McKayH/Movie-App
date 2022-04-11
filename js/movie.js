@@ -3,7 +3,7 @@ let pg = 1;
 
 let pgObject = {
     rpg: 1,
-    ppg: 1,
+    pg: 1,
     tpg: 1,
 }
 
@@ -23,42 +23,6 @@ class savedItem{
     }
 }
 
-function makeRecent(page) {
-    console.log(page);
-    let RHTML = '';
-    let postPath = '';
-    if (pgObject["rpg"] > 1) {
-        RHTML += `<button class="buttonStyle" onclick="minus('rpg', makeRecent)">PREV PAGE</button>`
-    }
-    for (let i = 0; i < page.results.length; i++){
-        if(page.results[i].poster_path){
-            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
-         }
-         else{
-            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
-         }
-        RHTML += `
-        <div class="CardStyle">
-            <div class="movieImg">
-                ${postPath}
-            </div>
-            <div class="info">
-                <p class="rating">${page.results[i].vote_average}</p>
-                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
-                <p class="date">${page.results[i].release_date}</p>
-            </div>
-            <div>
-                <button class="buttonStyle" onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
-            </div>
-        </div>
-        `;
-    };
-    if (pgObject["rpg"] < page.total_pages) {
-        RHTML += `<button class="buttonStyle" onclick="plus('rpg', makeRecent)">NEXT PAGE</button>`
-    }
-    
-    document.getElementById('recent').innerHTML = RHTML;
-}
 // popular
 function makePopular(page) {
     let PHTML = '';
@@ -81,7 +45,7 @@ function makePopular(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
+                <span onclick="switchPage(${page.results[i].id}); makePage(${postPath}, ${page.results[i].title}, ${page.results[i].release_date}, ${page.results[i].vote_average})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
