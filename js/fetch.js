@@ -4,9 +4,12 @@ const promiseApi = fetchApi(1, 'disney');
 promiseApi.then(data => {
     makeRecent(data)
     makePopular(data)
-    makeTrend(data)
     // sortIds(data);
 });
+const trend = fetchtrend();
+trend.then(makeTrend);
+
+
 function searching(){
     const query = document.getElementById('search').value;
     const ap = fetchApi( 1 ,query);
@@ -18,7 +21,7 @@ function searching(){
                 postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.poster_path}" onclick="switchPage(${ele.id})">`;
             }
             else{
-                postIm = `<img src="img/noPost.png" alt="no poster img">`;
+                postIm = `<img onclick="switchPage(${ele.id})" src="img/noPost.png" alt="no poster img">`;
             }
             swap += `<div class="CardStyle">
             <div class="movieImg">
@@ -41,6 +44,10 @@ function searching(){
 
 async function fetchApi(pg, query){
     const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=${query}&page=${pg}`);
+    return get.json()
+}
+async function fetchtrend(){
+    const get = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=38a763a2d61b4b9bf250355de45a7ac7`);
     return get.json()
 }
 
