@@ -1,18 +1,15 @@
 
 // let sortedIds = [];
-const promiseApi = fetchApi(1, 'disney');
-promiseApi.then(data => {
-    makeRecent(data)
-    makePopular(data)
-    // sortIds(data);
-});
-const trend = fetchtrend();
+const trend = fetchTrend();
 trend.then(makeTrend);
+
+const pop = fetchPop(pg);
+pop.then(makePopular);
 
 
 function searching(){
     const query = document.getElementById('search').value;
-    const ap = fetchApi( 1 ,query);
+    const ap = fetchSearch( 1 ,query);
     let swap = '';
     ap.then(data =>{
 
@@ -42,17 +39,18 @@ function searching(){
     });
 }
 
-async function fetchApi(pg, query){
+async function fetchSearch(pg, query){
     const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=${query}&page=${pg}`);
     return get.json()
 }
-async function fetchtrend(){
+async function fetchTrend(){
     const get = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=38a763a2d61b4b9bf250355de45a7ac7`);
     return get.json()
 }
-
-// https://developers.themoviedb.org/3/trending/get-trending
-// https://developers.themoviedb.org/3/movies/get-popular-movies
+async function fetchPop(pg){
+    const get = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=38a763a2d61b4b9bf250355de45a7ac7&language=en-US&page=${pg}`);
+    return get.json()
+}
 
 function plus(pg,fun) {
     pgObject[pg] += 1;
@@ -74,36 +72,3 @@ function minus(pg, fun) {
     });
 }
 
-//  work on this later
-
-
-// function sortIds(ap){
-//     const page = ap;
-//     let ids = [];
-//     page.results.forEach(ele => {
-//         ids.push(ele.id);
-//         });
-//     sortIds(ids);
-//     function sortIds(arr){
-//         let i = 0;
-//         while(arr.length){
-//             const min = smallest(arr)
-//             const smallId = arr.splice(arr.indexOf(min), 1);
-//             sortedIds.push(smallId[0]);
-//             i++;
-//             if(i === 100){
-//                 break;
-//             }
-//         }
-//         function smallest(arr){
-//             let small = arr[0];
-//             arr.forEach(ele =>{
-//                 if(ele < small){
-//                     small = ele;
-//                 }
-//             });
-//             return small;
-//         }
-//         console.log(sortedIds);
-//     }
-// }
