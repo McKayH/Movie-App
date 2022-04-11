@@ -60,7 +60,6 @@ function makePopular(page) {
 }
 // Trending
 function makeTrend(page) {
-    console.log(page);
     let THTML = '';
     let postPath ='';
     for (let i =0; i < page.results.length; i++){
