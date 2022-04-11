@@ -70,5 +70,9 @@ function minus(pg, fun) {
     minusApi.then(data => {
         fun(data)
     });
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 750cd4443b5cd9d30d0d2f09740ed0cebc34a430

@@ -63,9 +63,6 @@ function makePopular(page) {
 function makeTrend(page) {
     let THTML = '';
     let postPath ='';
-    if (pgObject["tpg"] > 1) {
-        THTML += `<button class="buttonStyle" onclick="minus('tpg', makeTrend)">PREV PAGE</button>`
-    }
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
             postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
@@ -88,11 +85,7 @@ function makeTrend(page) {
             </div>
         </div>
         `;
-    };
-   if (pgObject["tpg"] < page.total_pages) {
-        THTML += `<button class="buttonStyle" onclick="plus('tpg', makeTrend)">NEXT PAGE</button>`
     }
-
     document.getElementById('trending').innerHTML = THTML;
 }
 function makeSave(save) {
