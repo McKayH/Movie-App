@@ -44,7 +44,7 @@ function makePopular(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <span onclick="switchPage(${page.results[i].id})" class="name">${page.results[i].title}</span>
+                <span onclick="switchPage(${page.results[i].id}); makePage(${postPath}, ${page.results[i].title}, '${page.results[i].overview}', ${page.results[i].release_date}, ${page.results[i].vote_average})" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
@@ -60,6 +60,7 @@ function makePopular(page) {
 }
 // Trending
 function makeTrend(page) {
+    console.log(page);
     let THTML = '';
     let postPath ='';
     for (let i =0; i < page.results.length; i++){
