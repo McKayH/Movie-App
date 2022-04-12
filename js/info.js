@@ -1,10 +1,6 @@
-function switchPage(id){
-    document.getElementById('page').innerHTML = `<button onClick="window.location.reload();">Go Back</button><div id="mvDis"></div>`;
-    console.log(id);
-
-}
-function makePage(img, title, date, rating, info) {
+function switchPage(id, img, title, date, rating, info){
     HTML = `
+    <button onClick="window.location.reload();">Go Back</button>
     <div>
         <img src="https://image.tmdb.org/t/p/w500${img}">
         <div class="infomation">
@@ -14,7 +10,7 @@ function makePage(img, title, date, rating, info) {
             <div>${rating}</div>
         </div>
     </div>`;
-
-    document.getElementById('mvDis').innerHTML = HTML;
+    document.getElementById('page').innerHTML = HTML;
+    console.log(id);
 
 }
