@@ -4,6 +4,7 @@ function switchPage(id){
 
 }
 function makePage(img, title, date, rating, info) {
+    console.log('here');
     HTML = `
     <div>
         <img src="https://image.tmdb.org/t/p/w500${img}">
