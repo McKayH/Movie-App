@@ -6,7 +6,7 @@ function switchPage(id){
 function makePage(img, title, date, rating, info) {
     HTML = `
     <div>
-        <img src="${img}">
+        <img src="https://image.tmdb.org/t/p/w500${img}">
         <div class="infomation">
             <div>${title}</div>
             <div>${info}</div>
@@ -15,6 +15,6 @@ function makePage(img, title, date, rating, info) {
         </div>
     </div>`;
 
-    document.getElementById('page').innerHTML = HTML;
+    document.getElementById('page').append(HTML);
 
 }
