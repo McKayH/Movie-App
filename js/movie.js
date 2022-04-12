@@ -14,11 +14,13 @@ if (saved.length) {
 // HOMEPAGE
 
 class savedItem{
-    constructor(id, title, img, rateing){
+    constructor(id, title, info, date, img, rating){
         this.id = id;
         this.title = title;
+        this.info = info;
+        this.date = date;
         this.img = img;
-        this.rateing = rateing
+        this.rating = rating
     }
 }
 
@@ -48,7 +50,7 @@ function makePopular(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].poster_path}', '${page.results[i].title}', '${page.results[i].overview}', '${page.results[i].release_date}', '${page.results[i].vote_average}')">Save</button>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].poster_path}', '${page.results[i].title}', '${page.results[i].overview}', '${page.results[i].release_date}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
