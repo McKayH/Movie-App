@@ -12,10 +12,6 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand"><span id="logo"><img src="img/theFlyingWorm-croped.png" alt="worm with leaves on its back"id="logoImg"><span id="siteName">The Flying Worm</span></span></a>
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Active</a>
-                </li>
               <span class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
                 <button class="btn btn-outline-success" type="submit" onclick="searching()">Search</button>
@@ -48,10 +44,9 @@
         <!-- Saved -->
         <div >
           <h1>Recently Saved</h1>
+          <button type="button" class="btn btn-dark" onclick="switchSvd()">All Saved</button>
           <div class="container">
-            <div class="row flex" id="saved">
-
-            </div>
+            <div class="row flex" id="saved"></div>
           </div>
         </div>
       </body>
@@ -60,5 +55,3 @@
       <script src="js/savedMv.js"></script>
       <script src="js/fetch.js"></script>
 </html>
-
-
