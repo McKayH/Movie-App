@@ -48,7 +48,7 @@ function makePopular(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+                <button onclick="addSave('${page.results[i].poster_path}', '${page.results[i].title}', '${page.results[i].overview}', '${page.results[i].release_date}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
@@ -80,7 +80,7 @@ function makeTrend(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
+                <button onclick="addSave('${page.results[i].poster_path}', '${page.results[i].title}', '${page.results[i].overview}', '${page.results[i].release_date}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
@@ -95,10 +95,10 @@ function makeSave(save) {
     for (let i = save.length-1; i >= 0; i--) {
         const ele = save[i];
             if(ele.img != 'null'){
-                postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}" onclick="switchPage(${ele.id})">`;
+                postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.img}" onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')">`;
             }
             else{
-                postIm = `<img onclick="switchPage(${ele.id})" src="img/noPost.png" alt="no poster img">`;
+                postIm = `<img onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')" src="img/noPost.png" alt="no poster img">`;
             }
             SHTML += `<div class="CardStyle">
             <div class="movieImg">
@@ -106,7 +106,7 @@ function makeSave(save) {
             </div>
             <div class="info">
                 <p class="rating">${ele.rateing}</p>
-                <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
+                <span onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')" class="name">${ele.title}</span>
             </div>
             <button type="button" class="btn btn-dark" onclick="removeSv(${ele.id})">Remove</button>
         </div>`
@@ -143,10 +143,10 @@ function srch(data, qry){
     }
         data.results.forEach(ele => {
             if(ele.backdrop_path){
-                postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.poster_path}" onclick="switchPage(${ele.id})">`;
+                postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.poster_path}" onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')">`;
             }
             else{
-                postIm = `<img onclick="switchPage(${ele.id})" src="img/noPost.png" alt="no poster img">`;
+                postIm = `<img onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')" src="img/noPost.png" alt="no poster img">`;
             }
             swap += `<div class="CardStyle">
             <div class="movieImg">
@@ -154,10 +154,10 @@ function srch(data, qry){
             </div>
             <div class="info">
                 <p class="rating">${ele.popularity}</p>
-                <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
+                <span onclick="switchPage(${ele.id}); makePage('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')" class="name">${ele.title}</span>
                 <span>${ele.release_date}</span>
                 <div>
-                <button onclick="addSave('${ele.id}', '${ele.title}', '${ele.poster_path}', '${ele.vote_average}')">Save</button>
+                <button onclick="addSave('${ele.poster_path}', '${ele.title}', '${ele.overview}', '${ele.release_date}', '${ele.vote_average}')">Save</button>
                 </div>
             </div>
         </div>`
