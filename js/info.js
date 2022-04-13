@@ -17,7 +17,7 @@ function makePage(img, title, date, rating, info) {
     <div class="centerStuff">
         
             <img src="https://image.tmdb.org/t/p/w500${img}">
-            <div class="infomation">
+            <div class="information">
                 <div>${title}</div>
                 <div>${info}</div>
                 <div>${date}</div>
