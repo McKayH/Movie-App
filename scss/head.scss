@@ -1,13 +1,18 @@
-
-#logo{
+#logo {
     display: flex;
     align-items: center;
     
-    #logoImg{
-        width: 100px;
-        height: 50px;
-    }
-    #siteName{
-       align-self: flex-end;
-    }
-}
+  }
+  
+  #logo #logoImg {
+    width: 100px;
+    height: 50px;
+  }
+  
+  #logo #siteName {
+    align-self: flex-end;
+  }
+  
+  .colorG{
+    background-color: darkgray;
+  }

@@ -1,0 +1,44 @@
+* {
+    background-color: lightgrey;
+  }
+  
+  .movieImg img {
+    width: 150px;
+  }
+  
+  .scollMovie {
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flex {
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    overflow: scroll;
+  }
+  
+  .CardStyle {
+    width: 200px;
+  }
+  
+  .CardStyle .info{
+    padding-left: 10px;
+  }
+  
+  .buttonStyle {
+    max-width: 100px;
+  }
+  
+  .Heading {
+    padding-left: 50px;
+  }
+  
+  .centerStuff{
+    display: flex;
+    flex-flow: column wrap;
+    content: center;
+    padding: 50px;
+  }
