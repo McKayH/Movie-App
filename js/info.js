@@ -5,7 +5,7 @@ function switchPage(id){
     const movie = fetchById(id);
     movie.then(data =>{
 
-        makePage(data.backdrop_path, data.title, data.release_date, data.vote_average, data.overview);
+        makePage(data.poster_path, data.title, data.release_date, data.vote_average, data.overview);
     });
 
 
@@ -26,5 +26,4 @@ function makePage(img, title, date, rating, info) {
         
     </div>`;
     document.getElementById('page').innerHTML = HTML;
-    console.log(id);
 }
