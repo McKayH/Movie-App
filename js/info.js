@@ -4,14 +4,14 @@ function switchPage(id){
     console.log(id);
     const movie = fetchById(id);
     movie.then(data =>{
-        makePage(data, vote);
+        makePage(data);
     });
 
 
 }
 function makePage(data) {
     let poster = '';
-    let genres = ''
+    let genres = '';
     console.log(data)
     if (!data.poster_path) {
         poster = '<img src="img/noPost.png">';
@@ -35,9 +35,11 @@ function makePage(data) {
             <div class="infomation">
                 <h5>Genres</h5>
                 <ul id="genre">${genres}</ul>
-                <p>${data.overview}</p>
-                <div>${data.release_date}</div>
+                <p> ${data.overview}</p>
+                <div>Release Date: ${data.release_date}</div>
                 <div>Average rating: ${data.vote_average}<div> Votes counted: ${data.vote_count}</div></div>
+                <div>Budget: ${data.budget}</div>
+                <div>Revenue: ${data.revenue}</div>
             </div>
         
     </div>`;
