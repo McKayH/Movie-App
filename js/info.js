@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-function switchPage(id, img, title, date, rating, info){
-=======
+
 function switchPage(id){
     document.getElementById('page').innerHTML = `<button onClick="window.location.reload();">Go Back</button><div id="mvDis"></div>`;
     console.log(id);
@@ -14,7 +12,6 @@ function switchPage(id){
 }
 function makePage(img, title, date, rating, info) {
     console.log('here');
->>>>>>> McKay
     HTML = `
     <button onClick="window.location.reload();">Go Back</button>
     <div>
