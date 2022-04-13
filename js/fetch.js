@@ -31,9 +31,10 @@ async function fetchPop(pg){
 }
 // get a movie by id
 async function fetchById(id) {
-    const get = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=38a763a2d61b4b9bf250355de45a7ac7&language=en-US`);
-    return  get.json();
+        const get = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=38a763a2d61b4b9bf250355de45a7ac7&language=en-US`);
+        return  get.json();
 }
+
 
 function plus(pg,func) {
     pgObject[pg] += 1;

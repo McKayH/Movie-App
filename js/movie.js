@@ -145,7 +145,7 @@ function srch(data, qry){
         swap += `<button class="buttonStyle" onclick="minSearch('spg', srch, '${qry}')">PREV PAGE</button>`
     }
         data.results.forEach(ele => {
-            if(ele.backdrop_path){
+            if(ele.poster_path){
                 postIm = `<img src="https://image.tmdb.org/t/p/w500${ele.poster_path}" onclick="switchPage(${ele.id})">`;
             }
             else{
