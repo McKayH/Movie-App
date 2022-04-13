@@ -14,17 +14,25 @@ function searching(){
         srch(data, query);
     });
 }
+// searches for a movie or group of movies
 async function fetchSearch(pg, query){
     const get = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=38a763a2d61b4b9bf250355de45a7ac7&query=${query}&page=${pg}`);
     return get.json()
 }
+// gets trending
 async function fetchTrend(){
     const get = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=38a763a2d61b4b9bf250355de45a7ac7`);
     return get.json()
 }
+// gets popular
 async function fetchPop(pg){
     const get = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=38a763a2d61b4b9bf250355de45a7ac7&language=en-US&page=${pg}`);
     return get.json()
+}
+// get a movie by id
+async function fetchById(id) {
+    const get = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=38a763a2d61b4b9bf250355de45a7ac7&language=en-US`);
+    return  get.json();
 }
 
 function plus(pg,func) {
