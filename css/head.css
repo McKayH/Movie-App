@@ -1,13 +1,18 @@
 #logo {
   display: flex;
   align-items: center;
+  
 }
+
 #logo #logoImg {
   width: 100px;
   height: 50px;
 }
+
 #logo #siteName {
   align-self: flex-end;
 }
 
-/*# sourceMappingURL=head.css.map */
+.colorG{
+  background-color: darkgray;
+}

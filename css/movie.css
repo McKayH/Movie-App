@@ -1,3 +1,7 @@
+* {
+  background-color: lightgrey;
+}
+
 .movieImg img {
   width: 150px;
 }
@@ -17,11 +21,24 @@
 }
 
 .CardStyle {
-  width: 250px;
+  width: 200px;
+}
+
+.CardStyle .info{
+  padding-left: 10px;
 }
 
 .buttonStyle {
   max-width: 100px;
 }
 
-/*# sourceMappingURL=movie.css.map */
+.Heading {
+  padding-left: 50px;
+}
+
+.centerStuff{
+  display: flex;
+  flex-flow: column wrap;
+  content: center;
+  padding: 50px;
+}
