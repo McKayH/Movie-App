@@ -39,8 +39,15 @@
 .centerStuff {
   display: flex;
   flex-flow: column wrap;
-  content: center;
   padding: 50px;
+  align-items: center;
 }
 
-/*# sourceMappingURL=movie.css.map */
+.information {
+  font-size: 25px;
+}
+
+.information div{
+  padding: 10px;
+}
+

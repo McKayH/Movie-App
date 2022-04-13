@@ -32,7 +32,7 @@ function makePage(data) {
     <div class="centerStuff">
         <h1>${data.title}</h1>
             ${poster}
-            <div class="infomation">
+            <div class="information">
                 <h5>Genres</h5>
                 <ul id="genre">${genres}</ul>
                 <p> ${data.overview}</p>
