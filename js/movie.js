@@ -14,30 +14,28 @@ if (saved.length) {
 // HOMEPAGE
 
 class savedItem{
-    constructor(id, title, img, rateing, date, view){
+    constructor(id, title, img, rateing){
         this.id = id;
         this.title = title;
         this.img = img;
-        this.rateing = rateing;
-        this.date = date;
-        this.view = view;
+        this.rateing = rateing
     }
 }
 
 // popular
 function makePopular(page) {
     let PHTML = '';
-
+    console.log(page);
     let postPath = '';
     if (pgObject["ppg"] > 1) {
         PHTML += `<button class="buttonStyle" onclick="minus('ppg', makePopular)">PREV PAGE</button>`
     }
     for (let i = 0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<img onclick="switchPage(${page.results[i].id}); makePage(${page.results[i].poster_path}, ${page.results[i].title}, '${page.results[i].overview}', ${page.results[i].release_date}, ${page.results[i].vote_average})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
+            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
-            postPath = `<img onclick="switchPage(${page.results[i].id}); makePage(${page.results[i].poster_path}, ${page.results[i].title}, '${page.results[i].overview}', ${page.results[i].release_date}, ${page.results[i].vote_average})" src="img/noPost.png" alt="no poster img">`;
+            postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
          }
         PHTML += `
         <div class="CardStyle">
@@ -46,11 +44,11 @@ function makePopular(page) {
             </div>
             <div class="info">
                 <p class="rating">${page.results[i].vote_average}</p>
-                <span onclick="switchPage(${page.results[i].id}); makePage(${page.results[i].poster_path}, ${page.results[i].title}, '${page.results[i].overview}', ${page.results[i].release_date}, ${page.results[i].vote_average})" class="name">${page.results[i].title}</span>
+                <span onclick="switchPage(${page.results[i].id});" class="name">${page.results[i].title}</span>
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}', '${page.results[i].release_date}', '${page.results[i].overview}')">Save</button>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
@@ -66,7 +64,7 @@ function makeTrend(page) {
     let postPath ='';
     for (let i =0; i < page.results.length; i++){
         if(page.results[i].poster_path){
-            postPath =`<img onclick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
+            postPath =`<img onClick="switchPage(${page.results[i].id})" src="https://image.tmdb.org/t/p/w500${page.results[i].poster_path}">`
          }
          else{
             postPath = `<img onclick="switchPage(${page.results[i].id})" src="img/noPost.png" alt="no poster img">`;
@@ -82,7 +80,7 @@ function makeTrend(page) {
                 <p class="date">${page.results[i].release_date}</p>
             </div>
             <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}', '${page.results[i].release_date}', '${page.results[i].overview}')">Save</button>
+                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}')">Save</button>
             </div>
         </div>
         `;
@@ -120,7 +118,7 @@ function makeSave(save) {
     document.getElementById('saved').innerHTML = SHTML;
 }
 
-function addSave (svid, svtitle, svposter, svrating, svdate, svview) {
+function addSave (svid, svtitle, svposter, svrating) {
     let haveSved = false;
     if(saved.length){
         saved.forEach(ele =>{
@@ -131,7 +129,7 @@ function addSave (svid, svtitle, svposter, svrating, svdate, svview) {
         });
     }
     if(!haveSved){
-        const Item = new savedItem(svid, svtitle, svposter, svrating, svdate, svview);
+        const Item = new savedItem(svid, svtitle, svposter, svrating)
         saved.push(Item);
         localStorage.setItem('movieList', JSON.stringify(saved));
         makeSave(saved);
@@ -159,7 +157,7 @@ function srch(data, qry){
                 <span onclick="switchPage(${ele.id})" class="name">${ele.title}</span>
                 <span>${ele.release_date}</span>
                 <div>
-                <button onclick="addSave('${page.results[i].id}', '${page.results[i].title}', '${page.results[i].poster_path}', '${page.results[i].vote_average}', '${page.results[i].release_date}', '${page.results[i].overview}')">Save</button>
+                <button onclick="addSave('${ele.id}', '${ele.title}', '${ele.poster_path}', '${ele.vote_average}')">Save</button>
                 </div>
             </div>
         </div>`
