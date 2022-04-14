@@ -52,5 +52,10 @@
 }
 
 #cont {
-  
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#cont .CardStyle {
+  padding: 10px;
 }
